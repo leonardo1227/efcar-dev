@@ -7,6 +7,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="efcar" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
+          <element id="library" level="project" name="Maven: kr.pe.kwonnam.jsp:jsp-template-inheritance:0.3.RELEASE" />
+        </element>
       </element>
     </root>
   </artifact>
