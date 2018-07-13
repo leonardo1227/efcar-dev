@@ -1,5 +1,6 @@
 package edu.mum.cs.cs472wap.efcar.model;
 
+import java.time.Duration;
 import java.time.LocalDate;
 
 public class BookingCar {
@@ -117,7 +118,6 @@ public class BookingCar {
     }
 
     public Integer getDaysOfRent(){
-        //return this.realDropOffDate.minusDays(this.getStarMilleage().)
-        return null;
+        return  ((int) Duration.between(this.getPickUpDate(), this.realDropOffDate).toDays());
     }
 }
