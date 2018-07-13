@@ -1,21 +1,21 @@
 # efcar-dev
 Academic project for achieving the project requirements for the CS472 WAP Course at MUM.
 
--> Home (Search)
+-> Home (Search) (GUSTAVO)
 
  - Start information to look for a car booking.
   
--> Result (Select Option)
+-> Result (Select Option) (GUSTAVO)
 
  - List of available options
   
--> Confirmation
+-> Confirmation (LEONARDO)
 
  - Get payment information
   
   - Finally book information confirmation
   
--> Profile Maintain
+-> Profile Maintain (EDWIN)
 
   - Create a new profile
   
@@ -23,7 +23,7 @@ Academic project for achieving the project requirements for the CS472 WAP Course
   
   - View profile history
   
--> Authentication control
+-> Authentication control (LEONARDO)
 
   - Control of access of a part the system that the user need to logged on it.
   
