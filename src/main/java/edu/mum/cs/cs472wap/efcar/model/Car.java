@@ -7,27 +7,27 @@ public class Car {
 
     private Long id;
     private CarModel model;
-    private  String plate;
-    private Double milleage;
+    private String plate;
+    private Double mileage;
     private Boolean available;
     private String color;
     private List<String> pictures;
     private List<BookingCar> bookings;
 
     public Car() {
-        this.pictures = new ArrayList<String>();
-        this.bookings = new ArrayList<BookingCar>();
+        this.pictures = new ArrayList<>();
+        this.bookings = new ArrayList<>();
     }
 
-    public Car(Long id, CarModel model, String plate, Double milleage, Boolean available, String color) {
+    public Car(Long id, CarModel model, String plate, Double mileage, Boolean available, String color) {
         this.id = id;
         this.model = model;
         this.plate = plate;
-        this.milleage = milleage;
+        this.mileage = mileage;
         this.available = available;
         this.color = color;
-        this.pictures = new ArrayList<String>();
-        this.bookings = new ArrayList<BookingCar>();
+        this.pictures = new ArrayList<>();
+        this.bookings = new ArrayList<>();
     }
 
     public Long getId() {
@@ -54,12 +54,12 @@ public class Car {
         this.plate = plate;
     }
 
-    public Double getMilleage() {
-        return milleage;
+    public Double getMileage() {
+        return mileage;
     }
 
-    public void setMilleage(Double milleage) {
-        this.milleage = milleage;
+    public void setMileage(Double mileage) {
+        this.mileage = mileage;
     }
 
     public Boolean getAvailable() {

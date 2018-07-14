@@ -3,16 +3,14 @@ package edu.mum.cs.cs472wap.efcar.model;
 public class PersonAddress {
 
     private Long id;
-    private Person person;
     private String line1;
     private String line2;
     private String city;
     private String state;
     private String zipCode;
 
-    public PersonAddress(Long id, Person person, String line1, String line2, String city, String state, String zipCode) {
+    public PersonAddress(Long id, String line1, String line2, String city, String state, String zipCode) {
         this.id = id;
-        this.person = person;
         this.line1 = line1;
         this.line2 = line2;
         this.city = city;
@@ -30,14 +28,6 @@ public class PersonAddress {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
     }
 
     public String getLine1() {

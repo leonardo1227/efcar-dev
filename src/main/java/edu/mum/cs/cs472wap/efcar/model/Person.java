@@ -12,11 +12,12 @@ public class Person {
     private String gender;
     private PersonContact contact;
     private PersonAddress address;
+    private String photoURL;
 
     public Person() {
     }
 
-    public Person(Long id, String firstName, String lastName, LocalDate dateOfBirth, String gender, PersonContact contact, PersonAddress address) {
+    public Person(Long id, String firstName, String lastName, LocalDate dateOfBirth, String gender, PersonContact contact, PersonAddress address, String photoURL) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,6 +25,18 @@ public class Person {
         this.gender = gender;
         this.contact = contact;
         this.address = address;
+        this.photoURL = photoURL;
+    }
+
+    public Person(Person person) {
+        this.id = person.id;
+        this.firstName = person.firstName;
+        this.lastName = person.lastName;
+        this.dateOfBirth = person.dateOfBirth;
+        this.gender = person.gender;
+        this.contact = person.contact;
+        this.address = person.address;
+        this.photoURL = person.photoURL;
     }
 
     public Long getId() {

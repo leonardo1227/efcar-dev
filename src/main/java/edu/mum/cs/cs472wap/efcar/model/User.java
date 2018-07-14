@@ -10,13 +10,20 @@ public class User extends Person {
     private List<BookingCar> bookings;
 
     public User() {
-        this.bookings = new ArrayList<BookingCar>();
+        this.bookings = new ArrayList<>();
     }
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.bookings = new ArrayList<BookingCar>();
+        this.bookings = new ArrayList<>();
+    }
+
+    public User(String username, String password, Person person) {
+        super(person);
+        this.username = username;
+        this.password = password;
+        this.bookings = new ArrayList<>();
     }
 
     public String getUsername() {
