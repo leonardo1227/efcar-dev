@@ -1,0 +1,50 @@
+.searchBox {
+    background-color: #ff7c38;
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    border-radius: 2;
+}
+
+.searchBoxContainer {
+    margin-left: 4%;
+    margin-top: 1%;
+    position: absolute;
+    width: 380px;
+    height: 100%;
+    float: left;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.homeContainer {
+    position: relative;
+}
+
+
+
+
+/* Clear floats after the columns */
+
+.productsContainer {
+    position: absolute;
+    right: 40px;
+    margin-left: 4%;
+    margin-top: 1%;
+    width: 800px;
+}
+.productImage {
+    width: 100%;
+    height: 200px;
+}
+
+.column {
+    float: left;
+    width: 40%;
+    margin-right: 60px;
+    margin-bottom: 30px;
+}
+
+
