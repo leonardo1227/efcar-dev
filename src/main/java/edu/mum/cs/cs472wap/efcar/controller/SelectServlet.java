@@ -1,6 +1,7 @@
 package edu.mum.cs.cs472wap.efcar.controller;
 
 import com.google.gson.Gson;
+import edu.mum.cs.cs472wap.efcar.Util.Property;
 import edu.mum.cs.cs472wap.efcar.data.DataService;
 import edu.mum.cs.cs472wap.efcar.model.BookingCar;
 import edu.mum.cs.cs472wap.efcar.model.Car;
@@ -27,7 +28,7 @@ public class SelectServlet extends HttpServlet {
         bk.setCar(car);
         bk.setPickUpDate(localDate);
 
-        req.getSession().setAttribute("currentBooking", bk);
-        req.getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
+        req.getSession().setAttribute(Property.SESSION_BOOKING_ATTRIBUTE_NAME, bk);
+        req.getRequestDispatcher("/WEB-INF/pages/payment.jsp").forward(req, resp);
     }
 }
