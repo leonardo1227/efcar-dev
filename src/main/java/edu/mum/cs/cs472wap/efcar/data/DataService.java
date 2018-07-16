@@ -7,11 +7,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import static edu.mum.cs.cs472wap.efcar.model.CarType.COMPACT;
 import static edu.mum.cs.cs472wap.efcar.model.CarType.STANDARD;
+import static edu.mum.cs.cs472wap.efcar.model.CarType.CONVERTIBLE;
+import static edu.mum.cs.cs472wap.efcar.model.CarType.PREMIUM;
 
-public final class DataService {
+public class DataService {
 
     private static Map<Long, User> users;
     private static Map<Long, Car> cars;
@@ -62,6 +66,29 @@ public final class DataService {
     public static List<Car> getCarListByModel(String model) {
         return cars.values().stream().filter(x -> x.getModel().getName().equalsIgnoreCase(model)).collect(Collectors.toList());
     }
+
+    private static List<Car> getCarListByPredicate(Predicate<Car> predicateModel,Predicate<Car> predicateType,
+        Predicate<Car> predicateBrand) {
+
+        return cars.values().stream()
+                .filter(predicateModel)
+                .filter(predicateType)
+                .filter(predicateBrand)
+              //  .filter(predicateDate)
+                .collect(Collectors.toList());
+    }
+
+    public static List<Car> getCarListSearch(String type, String brand,  String model, LocalDate date ) {
+        Predicate<Car> pModel = (x) -> x.getModel().getName().toLowerCase().contains(model.toLowerCase());
+        Predicate<Car> pType  = (x) -> type.equals("all") || x.getModel().getType().equals(CarType.valueOf(type));
+        Predicate<Car> pBrand = (x) -> brand.equals("all") || x.getModel().getBrand().getName().equals(brand);
+        Predicate<Car> pDate  = (x) -> x.getBookings().stream().filter(y -> date.isAfter(y.getPickUpDate())
+                                    && date.isBefore(y.getDropOffDate())).count() > 0;
+
+        return getCarListByPredicate(pModel, pType,pBrand);
+    }
+
+
 
     /*Other Lists*/
     public static List<String> getBrands() {
@@ -132,7 +159,7 @@ public final class DataService {
         person = new Person(2L,
                 "terry",
                 "little",
-                LocalDate.of(1989, 9, 7),
+                LocalDate.of(1989, 11, 7),
                 "female",
                 new PersonContact(2L, "terry.little@example.com", "00-8322-2240"),
                 new PersonAddress(2L, "5140 robinson rd", "", "rockhampton", "northern territory", "528"),
@@ -161,7 +188,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(2L, "Bentley");
-        carModel = new CarModel(2L, carBrand, STANDARD, "Bentley", 2008, "1001", 73.0, 5);
+        carModel = new CarModel(2L, carBrand, PREMIUM, "Flying Spur", 2008, "1001", 73.0, 5);
         car = new Car(2L, carModel, "1G6AJ5", 300.0, true, "Black");
         cars.put(car.getId(), car);
 
@@ -176,7 +203,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(5L, "Nissan");
-        carModel = new CarModel(5L, carBrand, STANDARD, "Nissan", 1998, "1004", 142.0, 5);
+        carModel = new CarModel(5L, carBrand, STANDARD, "Sentra", 1998, "1004", 142.0, 5);
         car = new Car(5L, carModel, "WBANV1", 1050.0, true, "Black");
         cars.put(car.getId(), car);
 
@@ -191,7 +218,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(8L, "Chevrolet");
-        carModel = new CarModel(8L, carBrand, STANDARD, "Chevrolet", 1994, "1007", 211.0, 5);
+        carModel = new CarModel(8L, carBrand, STANDARD, "Camaro", 1994, "1007", 211.0, 5);
         car = new Car(8L, carModel, "5J8TB2", 1800.0, true, "Black");
         cars.put(car.getId(), car);
 
@@ -206,7 +233,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(11L, "Ford");
-        carModel = new CarModel(11L, carBrand, STANDARD, "Ford", 2007, "1010", 280.0, 5);
+        carModel = new CarModel(11L, carBrand, STANDARD, "Fiesta", 2007, "1010", 280.0, 5);
         car = new Car(11L, carModel, "1G4GB5", 2550.0, true, "Black");
         cars.put(car.getId(), car);
 
@@ -216,7 +243,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(13L, "Ford");
-        carModel = new CarModel(13L, carBrand, STANDARD, "Ford", 2001, "1012", 326.0, 5);
+        carModel = new CarModel(13L, carBrand, STANDARD, "Fiesta", 2001, "1012", 326.0, 5);
         car = new Car(13L, carModel, "WA1DGA", 3050.0, true, "Black");
         cars.put(car.getId(), car);
 
@@ -241,7 +268,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(18L, "Ford");
-        carModel = new CarModel(18L, carBrand, STANDARD, "Ford", 1998, "1017", 441.0, 5);
+        carModel = new CarModel(18L, carBrand, STANDARD, "Fiesta", 1998, "1017", 441.0, 5);
         car = new Car(18L, carModel, "WAUBF9", 4300.0, true, "Red");
         cars.put(car.getId(), car);
 
@@ -256,7 +283,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(21L, "Audi");
-        carModel = new CarModel(21L, carBrand, STANDARD, "Audi", 1986, "1020", 510.0, 5);
+        carModel = new CarModel(21L, carBrand, STANDARD, "Model T", 1986, "1020", 510.0, 5);
         car = new Car(21L, carModel, "WBA3F9", 5050.0, true, "Red");
         cars.put(car.getId(), car);
 
@@ -291,7 +318,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(28L, "Chevrolet");
-        carModel = new CarModel(28L, carBrand, STANDARD, "Chevrolet", 1974, "1027", 671.0, 5);
+        carModel = new CarModel(28L, carBrand, STANDARD, "Camaro", 1974, "1027", 671.0, 5);
         car = new Car(28L, carModel, "SCFBF0", 6800.0, true, "Blue");
         cars.put(car.getId(), car);
 
@@ -301,7 +328,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(30L, "Chevrolet");
-        carModel = new CarModel(30L, carBrand, STANDARD, "Chevrolet", 2001, "1029", 717.0, 5);
+        carModel = new CarModel(30L, carBrand, STANDARD, "Camaro", 2001, "1029", 717.0, 5);
         car = new Car(30L, carModel, "WP1AA2", 7300.0, true, "Yellow");
         cars.put(car.getId(), car);
 
@@ -341,7 +368,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(38L, "Chevrolet");
-        carModel = new CarModel(38L, carBrand, STANDARD, "Chevrolet", 1967, "1037", 901.0, 5);
+        carModel = new CarModel(38L, carBrand, STANDARD, "Camaro", 1967, "1037", 901.0, 5);
         car = new Car(38L, carModel, "WDDPK4", 9300.0, true, "Blue");
         cars.put(car.getId(), car);
 
@@ -356,12 +383,12 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(41L, "Cadillac");
-        carModel = new CarModel(41L, carBrand, STANDARD, "Cadillac", 2000, "1040", 970.0, 5);
+        carModel = new CarModel(41L, carBrand, PREMIUM, "Cadillac", 2000, "1040", 970.0, 5);
         car = new Car(41L, carModel, "WAUFGB", 10050.0, true, "Red");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(42L, "Hyundai");
-        carModel = new CarModel(42L, carBrand, STANDARD, "Hyundai", 2012, "1041", 993.0, 5);
+        carModel = new CarModel(42L, carBrand, STANDARD, "Santafe", 2012, "1041", 993.0, 5);
         car = new Car(42L, carModel, "JTHBK1", 10300.0, true, "Green");
         cars.put(car.getId(), car);
 
@@ -386,7 +413,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(47L, "Chevrolet");
-        carModel = new CarModel(47L, carBrand, STANDARD, "Chevrolet", 1999, "1046", 1108.0, 5);
+        carModel = new CarModel(47L, carBrand, STANDARD, "Camaro", 1999, "1046", 1108.0, 5);
         car = new Car(47L, carModel, "WA1LKA", 11550.0, true, "Blue");
         cars.put(car.getId(), car);
 
@@ -396,7 +423,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(49L, "Audi");
-        carModel = new CarModel(49L, carBrand, STANDARD, "Audi", 2003, "1048", 1154.0, 5);
+        carModel = new CarModel(49L, carBrand, STANDARD, "Model T", 2003, "1048", 1154.0, 5);
         car = new Car(49L, carModel, "5N1AR2", 12050.0, true, "Red");
         cars.put(car.getId(), car);
 
@@ -416,7 +443,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(53L, "Chevrolet");
-        carModel = new CarModel(53L, carBrand, STANDARD, "Chevrolet", 2000, "1052", 1246.0, 5);
+        carModel = new CarModel(53L, carBrand, STANDARD, "Camaro", 2000, "1052", 1246.0, 5);
         car = new Car(53L, carModel, "4USBT5", 13050.0, true, "Blue");
         cars.put(car.getId(), car);
 
@@ -426,47 +453,47 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(55L, "Nissan");
-        carModel = new CarModel(55L, carBrand, STANDARD, "Nissan", 2012, "1054", 1292.0, 5);
+        carModel = new CarModel(55L, carBrand, STANDARD, "Sentra", 2012, "1054", 1292.0, 5);
         car = new Car(55L, carModel, "1C6RD6", 13550.0, true, "Black");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(56L, "Ford");
-        carModel = new CarModel(56L, carBrand, STANDARD, "Ford", 1988, "1055", 1315.0, 5);
+        carModel = new CarModel(56L, carBrand, STANDARD, "Fiesta", 1988, "1055", 1315.0, 5);
         car = new Car(56L, carModel, "1FTSW2", 13800.0, true, "Green");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(57L, "Audi");
-        carModel = new CarModel(57L, carBrand, STANDARD, "Audi", 1998, "1056", 1338.0, 5);
+        carModel = new CarModel(57L, carBrand, STANDARD, "Model T", 1998, "1056", 1338.0, 5);
         car = new Car(57L, carModel, "SCBBR9", 14050.0, true, "Blue");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(58L, "Mitsubishi");
-        carModel = new CarModel(58L, carBrand, STANDARD, "Mitsubishi", 1986, "1057", 1361.0, 5);
+        carModel = new CarModel(58L, carBrand, PREMIUM, "Mitsubishi", 1986, "1057", 1361.0, 5);
         car = new Car(58L, carModel, "1G6DW6", 14300.0, true, "Yellow");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(59L, "Ford");
-        carModel = new CarModel(59L, carBrand, STANDARD, "Ford", 1996, "1058", 1384.0, 5);
+        carModel = new CarModel(59L, carBrand, COMPACT, "Fiesta", 1996, "1058", 1384.0, 5);
         car = new Car(59L, carModel, "WAUMFA", 14550.0, true, "Yellow");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(60L, "Ford");
-        carModel = new CarModel(60L, carBrand, STANDARD, "Ford", 2004, "1059", 1407.0, 5);
+        carModel = new CarModel(60L, carBrand, STANDARD, "Fiesta", 2004, "1059", 1407.0, 5);
         car = new Car(60L, carModel, "3D4PG9", 14800.0, true, "Green");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(61L, "Chevrolet");
-        carModel = new CarModel(61L, carBrand, STANDARD, "Chevrolet", 1967, "1060", 1430.0, 5);
+        carModel = new CarModel(61L, carBrand, STANDARD, "Camaro", 1967, "1060", 1430.0, 5);
         car = new Car(61L, carModel, "WVWDB7", 15050.0, true, "Red");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(62L, "Ford");
-        carModel = new CarModel(62L, carBrand, STANDARD, "Ford", 2007, "1061", 1453.0, 5);
+        carModel = new CarModel(62L, carBrand, STANDARD, "Fiesta", 2007, "1061", 1453.0, 5);
         car = new Car(62L, carModel, "4T1BK1", 15300.0, true, "Blue");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(63L, "Audi");
-        carModel = new CarModel(63L, carBrand, STANDARD, "Audi", 2011, "1062", 1476.0, 5);
+        carModel = new CarModel(63L, carBrand, STANDARD, "Model T", 2011, "1062", 1476.0, 5);
         car = new Car(63L, carModel, "WUARL4", 15550.0, true, "Black");
         cars.put(car.getId(), car);
 
@@ -491,7 +518,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(68L, "Chevrolet");
-        carModel = new CarModel(68L, carBrand, STANDARD, "Chevrolet", 2006, "1067", 1591.0, 5);
+        carModel = new CarModel(68L, carBrand, CONVERTIBLE, "Camaro", 2006, "1067", 1591.0, 5);
         car = new Car(68L, carModel, "SCBFC7", 16800.0, true, "Black");
         cars.put(car.getId(), car);
 
@@ -511,27 +538,27 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(72L, "Chevrolet");
-        carModel = new CarModel(72L, carBrand, STANDARD, "Chevrolet", 1977, "1071", 1683.0, 5);
+        carModel = new CarModel(72L, carBrand, STANDARD, "Camaro", 1977, "1071", 1683.0, 5);
         car = new Car(72L, carModel, "JM1NC2", 17800.0, true, "Blue");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(73L, "Chevrolet");
-        carModel = new CarModel(73L, carBrand, STANDARD, "Chevrolet", 2000, "1072", 1706.0, 5);
+        carModel = new CarModel(73L, carBrand, STANDARD, "Camaro", 2000, "1072", 1706.0, 5);
         car = new Car(73L, carModel, "WAUML5", 18050.0, true, "Red");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(74L, "Ford");
-        carModel = new CarModel(74L, carBrand, STANDARD, "Ford", 1988, "1073", 1729.0, 5);
+        carModel = new CarModel(74L, carBrand, STANDARD, "Fiesta", 1988, "1073", 1729.0, 5);
         car = new Car(74L, carModel, "4T1BF3", 18300.0, true, "Green");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(75L, "Bentley");
-        carModel = new CarModel(75L, carBrand, STANDARD, "Bentley", 2008, "1074", 1752.0, 5);
+        carModel = new CarModel(75L, carBrand, STANDARD, "Flying Spur", 2008, "1074", 1752.0, 5);
         car = new Car(75L, carModel, "1GKS1K", 18550.0, true, "Yellow");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(76L, "Chevrolet");
-        carModel = new CarModel(76L, carBrand, STANDARD, "Chevrolet", 2007, "1075", 1775.0, 5);
+        carModel = new CarModel(76L, carBrand, STANDARD, "Camaro", 2007, "1075", 1775.0, 5);
         car = new Car(76L, carModel, "1FBNE3", 18800.0, true, "Blue");
         cars.put(car.getId(), car);
 
@@ -561,12 +588,12 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(82L, "Chevrolet");
-        carModel = new CarModel(82L, carBrand, STANDARD, "Chevrolet", 2005, "1081", 1913.0, 5);
+        carModel = new CarModel(82L, carBrand, STANDARD, "Camaro", 2005, "1081", 1913.0, 5);
         car = new Car(82L, carModel, "1G6KD5", 20300.0, true, "Blue");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(83L, "Hyundai");
-        carModel = new CarModel(83L, carBrand, STANDARD, "Hyundai", 1994, "1082", 1936.0, 5);
+        carModel = new CarModel(83L, carBrand, STANDARD, "Santafe", 1994, "1082", 1936.0, 5);
         car = new Car(83L, carModel, "1GYS3G", 20550.0, true, "Green");
         cars.put(car.getId(), car);
 
@@ -591,7 +618,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(88L, "Infiniti");
-        carModel = new CarModel(88L, carBrand, STANDARD, "Infiniti", 1999, "1087", 2051.0, 5);
+        carModel = new CarModel(88L, carBrand, CONVERTIBLE, "Infiniti", 1999, "1087", 2051.0, 5);
         car = new Car(88L, carModel, "WAUXL6", 21800.0, true, "Red");
         cars.put(car.getId(), car);
 
@@ -601,12 +628,12 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(90L, "Mercury");
-        carModel = new CarModel(90L, carBrand, STANDARD, "Mercury", 1994, "1089", 2097.0, 5);
+        carModel = new CarModel(90L, carBrand, CONVERTIBLE, "Mercury", 1994, "1089", 2097.0, 5);
         car = new Car(90L, carModel, "WBA3B1", 22300.0, true, "Blue");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(91L, "Hyundai");
-        carModel = new CarModel(91L, carBrand, STANDARD, "Hyundai", 2005, "1090", 2120.0, 5);
+        carModel = new CarModel(91L, carBrand, STANDARD, "Santafe", 2005, "1090", 2120.0, 5);
         car = new Car(91L, carModel, "JTJBC1", 22550.0, true, "Blue");
         cars.put(car.getId(), car);
 
@@ -621,7 +648,7 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(94L, "Nissan");
-        carModel = new CarModel(94L, carBrand, STANDARD, "Nissan", 2000, "1093", 2189.0, 5);
+        carModel = new CarModel(94L, carBrand, STANDARD, "Sentra", 2000, "1093", 2189.0, 5);
         car = new Car(94L, carModel, "SAJWA1", 23300.0, true, "Yellow");
         cars.put(car.getId(), car);
 
@@ -646,12 +673,12 @@ public final class DataService {
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(99L, "Ford");
-        carModel = new CarModel(99L, carBrand, STANDARD, "Ford", 2008, "1098", 2304.0, 5);
+        carModel = new CarModel(99L, carBrand, STANDARD, "Fiesta", 2008, "1098", 2304.0, 5);
         car = new Car(99L, carModel, "SCFFDC", 24550.0, true, "Black");
         cars.put(car.getId(), car);
 
         carBrand = new CarBrand(100L, "Lotus");
-        carModel = new CarModel(100L, carBrand, STANDARD, "Lotus", 1996, "1099", 2327.0, 5);
+        carModel = new CarModel(100L, carBrand, COMPACT, "Lotus", 1996, "1099", 2327.0, 5);
         car = new Car(100L, carModel, "WBADT3", 24800.0, true, "Green");
         cars.put(car.getId(), car);
 
