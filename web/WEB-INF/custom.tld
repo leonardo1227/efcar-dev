@@ -11,7 +11,7 @@
 
     <tag>
         <name>textField</name>
-        <tag-class>edu.mum.cs.cs472wap.efcar.Tag.TextFieldTag</tag-class>
+        <tag-class>edu.mum.cs.cs472wap.efcar.tag.TextFieldTag</tag-class>
         <body-content>empty</body-content>
         <attribute>
             <name>name</name>

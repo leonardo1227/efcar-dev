@@ -1,4 +1,4 @@
-package edu.mum.cs.cs472wap.efcar.Tag;
+package edu.mum.cs.cs472wap.efcar.tag;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
