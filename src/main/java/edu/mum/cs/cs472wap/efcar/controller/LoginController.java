@@ -1,5 +1,6 @@
 package edu.mum.cs.cs472wap.efcar.controller;
 
+import edu.mum.cs.cs472wap.efcar.Util.Property;
 import edu.mum.cs.cs472wap.efcar.data.DataService;
 import edu.mum.cs.cs472wap.efcar.model.User;
 
@@ -23,7 +24,7 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String redirectUrl = (String) req.getAttribute("urlAfterLogin");
+        String redirectUrl = (String) req.getAttribute(Property.ORIGIN_REQUEST_URL);
 
         Optional<User> user = DataService.getUsers().entrySet().stream()
                 .filter(x -> x.getValue().getUsername().equals(req.getParameter("username")))
@@ -31,7 +32,7 @@ public class LoginController extends HttpServlet {
                 .findFirst();
         if(user.isPresent() && user.get().getPassword().equals(req.getParameter("password"))){
             HttpSession session = req.getSession();
-            session.setAttribute("userLogged",user.get());
+            session.setAttribute(Property.SESSION_USER_ATTRIBUTE_NAME,user.get());
             if(redirectUrl!=null){
                 resp.sendRedirect(redirectUrl);
             }else{
@@ -39,7 +40,7 @@ public class LoginController extends HttpServlet {
             }
         }else{
             if(redirectUrl!=null){
-                req.setAttribute("urlAfterLogin",redirectUrl);
+                req.setAttribute(Property.ORIGIN_REQUEST_URL,redirectUrl);
             }
             req.setAttribute("message","Invalid user, Try it again!");
             req.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(req,resp);//

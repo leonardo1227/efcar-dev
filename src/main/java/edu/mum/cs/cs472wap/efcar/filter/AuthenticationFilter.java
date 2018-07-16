@@ -1,5 +1,7 @@
 package edu.mum.cs.cs472wap.efcar.filter;
 
+import edu.mum.cs.cs472wap.efcar.Util.Property;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -22,10 +24,10 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
-        if(session!=null && session.getAttribute("userLogged")!=null){
+        if(session!=null && session.getAttribute(Property.SESSION_USER_ATTRIBUTE_NAME)!=null){
             filterChain.doFilter(request,response);
         }else{
-            request.setAttribute("urlAfterLogin",request.getRequestURL().toString());
+            request.setAttribute(Property.ORIGIN_REQUEST_URL,request.getRequestURL().toString());
             request.getRequestDispatcher("/login").forward(request,response);
         }
 
