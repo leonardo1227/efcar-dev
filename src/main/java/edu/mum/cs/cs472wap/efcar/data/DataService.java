@@ -69,7 +69,7 @@ public final class DataService {
     }
 
     public static List<String> getModels() {
-        return null;
+        return models;
     }
 
     /*Factory methods*/
