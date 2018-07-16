@@ -15,8 +15,9 @@ public class BookingCar {
     private Double starMilleage;
     private Double finalMilleage;
     private Payment payment;
+    private Double finalTotalPrice;
 
-    public BookingCar(Long id, Car car, User user, Double totalPrice, LocalDate pickUpDate, LocalDate dropOffDate, LocalDate realDropOffDate, Double starMilleage, Double finalMilleage, Payment payment) {
+    public BookingCar(Long id, Car car, User user, Double totalPrice, LocalDate pickUpDate, LocalDate dropOffDate, LocalDate realDropOffDate, Double starMilleage, Double finalMilleage, Payment payment, Double finalTotalPrice) {
         this.id = id;
         this.car = car;
         this.user = user;
@@ -27,6 +28,7 @@ public class BookingCar {
         this.starMilleage = starMilleage;
         this.finalMilleage = finalMilleage;
         this.payment = payment;
+        this.finalTotalPrice = finalTotalPrice;
     }
 
     public BookingCar() {
@@ -113,11 +115,23 @@ public class BookingCar {
         this.payment = payment;
     }
 
+    public Double getFinalTotalPrice() {
+        return finalTotalPrice;
+    }
+
+    public void setFinalTotalPrice(Double finalTotalPrice) {
+        this.finalTotalPrice = finalTotalPrice;
+    }
+
     public Double getRanMilleages(){
         return this.getFinalMilleage()-this.getStarMilleage();
     }
 
-    public Integer getDaysOfRent(){
+    public Integer getRealDaysOfRent(){
         return  ((int) Duration.between(this.getPickUpDate(), this.realDropOffDate).toDays());
+    }
+
+    public Integer getDaysOfRent(){
+        return ((int) Duration.between(this.getPickUpDate(),this.dropOffDate).toDays());
     }
 }

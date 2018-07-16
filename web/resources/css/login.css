@@ -1,0 +1,20 @@
+#loginBox{
+    width: 150px;
+    margin: auto;
+}
+
+form > div > label{
+    display: block;
+}
+
+#loginControls{
+    text-align: center;
+}
+
+h4{
+    color: red;
+}
+
+#messages{
+    text-align: center;
+}
