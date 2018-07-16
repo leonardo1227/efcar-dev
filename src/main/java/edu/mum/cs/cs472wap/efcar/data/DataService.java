@@ -17,6 +17,7 @@ public final class DataService {
     private static Map<Long, Car> cars;
     private static List<String> brands;
     private static List<String> models;
+    private static Map<Long, CardInfo> cardInfoMap;
 
     private DataService() {
 
@@ -27,7 +28,10 @@ public final class DataService {
         createUsers();
         createBrands();
         createModels();
+        loadCardInfoMap();
     }
+
+
 
     /*Users*/
     public static Map<Long, User> getUsers() {
@@ -70,6 +74,10 @@ public final class DataService {
 
     public static List<String> getModels() {
         return models;
+    }
+
+    public static Map<Long, CardInfo> getCardInfoMap() {
+        return cardInfoMap;
     }
 
     /*Factory methods*/
@@ -655,5 +663,20 @@ public final class DataService {
         car = new Car(100L, carModel, "WBADT3", 24800.0, true, "Green");
         cars.put(car.getId(), car);
 
+    }
+
+    /*Card Info Map*/
+    private static void loadCardInfoMap() {
+        cardInfoMap = new HashMap<>();
+        CardInfo visaCard = new CardInfo(Long.valueOf(4), "Visa", "http://localhost:8080/efcar/resources/images/visa.png");
+        CardInfo masterCard = new CardInfo(Long.valueOf(5), "MasterCard", "http://localhost:8080/efcar/resources/images/mastercard.png");
+        CardInfo discoverCard = new CardInfo(Long.valueOf(6), "Discover", "http://localhost:8080/efcar/resources/images/discover.png");
+        CardInfo americanExpressCard = new CardInfo(Long.valueOf(3), "American Express", "http://localhost:8080/efcar/resources/images/american-express.png");
+
+
+        cardInfoMap.put(visaCard.getCode(), visaCard);
+        cardInfoMap.put(masterCard.getCode(),masterCard);
+        cardInfoMap.put(discoverCard.getCode(), discoverCard);
+        cardInfoMap.put(americanExpressCard.getCode(),americanExpressCard);
     }
 }

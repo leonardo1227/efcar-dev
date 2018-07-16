@@ -1,7 +1,7 @@
 package edu.mum.cs.cs472wap.efcar.controller;
 
 import com.google.gson.Gson;
-import edu.mum.cs.cs472wap.efcar.model.CardInfo;
+import edu.mum.cs.cs472wap.efcar.data.DataService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,11 +15,8 @@ import java.io.PrintWriter;
 public class CardInformationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //System.out.println(req.getParameter("cod"));
-        CardInfo cardInfo = new CardInfo(1, "Visa", "http://localhost:8080/efcar/resources/images/visa.png");
-        Gson gson = new Gson();
-        String json = gson.toJson(cardInfo);
+        resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
-        out.print(json);
+        out.print(new Gson().toJson(DataService.getCardInfoMap().get(Long.valueOf(req.getParameter("code")))));
     }
 }

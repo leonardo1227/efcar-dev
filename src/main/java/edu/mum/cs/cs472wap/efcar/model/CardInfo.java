@@ -2,11 +2,11 @@ package edu.mum.cs.cs472wap.efcar.model;
 
 public class CardInfo {
 
-    private Integer code;
+    private Long code;
     private String name;
     private String iconUrl;
 
-    public CardInfo(Integer code, String name, String iconUrl) {
+    public CardInfo(Long code, String name, String iconUrl) {
         this.code = code;
         this.name = name;
         this.iconUrl = iconUrl;
@@ -15,11 +15,11 @@ public class CardInfo {
     public CardInfo() {
     }
 
-    public Integer getCode() {
+    public Long getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
+    public void setCode(Long code) {
         this.code = code;
     }
 
