@@ -23,8 +23,8 @@ public final class DataService {
     }
 
     static {
-        createUsers();
         createCars();
+        createUsers();
         createBrands();
         createModels();
     }
@@ -93,6 +93,40 @@ public final class DataService {
                 new PersonAddress(1L, "4782 anafartalar cd", "", "eskişehir", "ankara", "77537"),
                 "https://randomuser.me/api/portraits/men/18.jpg");
         User user = new User("user1", "pass1", person);
+        BookingCar bookingCar = new BookingCar(1L,
+                cars.values().stream().skip(4).limit(1).findFirst().get(),
+                user,
+                100.0,
+                LocalDate.of(2015, 06, 5),
+                LocalDate.of(2015, 07, 10),
+                LocalDate.of(2015, 07, 10),
+                100.0, 200.0,
+                new Payment(1L, "123456", "Edwin Cobos", "10357893", "12/22", CardType.Credit),
+                150.0);
+        user.addBooking(bookingCar);
+        bookingCar = new BookingCar(1L,
+                cars.values().stream().skip(8).limit(1).findFirst().get(),
+                user,
+                100.0,
+                LocalDate.of(2015, 06, 5),
+                LocalDate.of(2015, 07, 10),
+                LocalDate.of(2015, 07, 10),
+                100.0, 200.0,
+                new Payment(1L, "123456", "Edwin Cobos", "10357893", "12/22", CardType.Credit),
+                150.0);
+        user.addBooking(bookingCar);
+
+        bookingCar = new BookingCar(1L,
+                cars.values().stream().skip(22).limit(1).findFirst().get(),
+                user,
+                100.0,
+                LocalDate.of(2015, 06, 5),
+                LocalDate.of(2015, 07, 10),
+                LocalDate.of(2015, 07, 10),
+                100.0, 200.0,
+                new Payment(1L, "123456", "Edwin Cobos", "10357893", "12/22", CardType.Credit),
+                150.0);
+        user.addBooking(bookingCar);
         users.put(user.getId(), user);
 
         person = new Person(2L,

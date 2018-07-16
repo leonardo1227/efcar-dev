@@ -94,4 +94,12 @@ public class Person {
     public void setAddress(PersonAddress address) {
         this.address = address;
     }
+
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
+    }
 }

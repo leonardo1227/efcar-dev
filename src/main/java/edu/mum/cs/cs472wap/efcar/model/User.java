@@ -49,4 +49,8 @@ public class User extends Person {
     public void setBookings(List<BookingCar> bookings) {
         this.bookings = bookings;
     }
+
+    public void addBooking(BookingCar booking) {
+        this.bookings.add(booking);
+    }
 }

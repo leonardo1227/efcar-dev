@@ -29,6 +29,10 @@ header img, header h1 {
     float: left;
 }
 
+form {
+    margin: 0;
+}
+
 .headerMenu {
     clear: both;
     text-align: right;
@@ -73,7 +77,7 @@ footer{
     text-transform: uppercase;
 }
 
-input[type="submit"] {
+input[type="submit"], button {
     border-style: none;
     padding: 20px;
     min-width: 200px;
