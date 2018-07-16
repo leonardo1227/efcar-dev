@@ -39,6 +39,9 @@ header img, header h1 {
     margin: 0 auto;
     background-color: white;
     min-height: 700px;
+    overflow: auto;
+    position: relative;
+    box-shadow: 0 0 9px #aaa;
 }
 
 footer{
@@ -46,4 +49,153 @@ footer{
     background-color: black;
     min-height: 100px;
     color: white;
+}
+
+.registrationForm {
+    width: 500px;
+    margin: 25px auto;
+    text-align: center;
+    box-shadow: 0px 0px 10px #888888;
+    overflow: auto;
+}
+
+.registrationForm form {
+    margin: 20px;
+}
+
+#container h2 {
+    text-align: center;
+    background-color: #F4793E;
+    color: white;
+    padding: 20px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+input[type="submit"] {
+    border-style: none;
+    padding: 20px;
+    min-width: 200px;
+    margin-top: 20px;
+    background-color: #F4793E;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+fieldset{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: none;
+    padding: 0;
+}
+fieldset legend {
+    color: #aaaaaa;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="date"],
+input[type="password"],
+select {
+    padding: 0.5em;
+    vertical-align: middle;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #b7b7b7;
+    width: 200px;
+    height: 45px;
+    box-sizing: border-box;
+    display: inline;
+    margin: 6px;
+}
+
+.input-select {
+    padding-right: 2em;
+}
+
+.input-select:required:invalid {
+    color: gray;
+}
+
+.input-select option {
+    color: black;
+}
+
+.profilePhoto {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.profilePhoto .editArea {
+    background: linear-gradient(transparent, transparent, transparent, transparent, #525252);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.profilePhoto .editArea a {
+    color: white;
+    font-weight: bold;
+    margin: 10px;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.profilePhoto:hover > .editArea {
+    display: block;
+}
+
+.profileContent {
+    margin: 20px;
+}
+
+.profileHistory {
+    text-align: left;
+}
+
+.profileHistory h3 {
+    font-size: 16px;
+    text-align: center;
+    background-color: #e4e4e4;
+    padding: 15px;
+
+}
+
+.profileHistory table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.profileHistory table, .profileHistory th, .profileHistory td {
+    border: 1px solid #cecece;
+}
+
+.profileHistory th {
+    height: 45px;
+    background-color: #F4793E;
+    color: white;
+}
+
+.profileHistory th, .profileHistory td {
+    padding: 10px;
+}
+
+.profileHistory tr:nth-child(even) {
+    background-color: #eeeeee;
+}
+
+.profileHistory tr:nth-child(odd) {
+    background-color: #ffffff;
 }
