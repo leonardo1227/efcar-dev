@@ -27,8 +27,10 @@ public class SelectServlet extends HttpServlet {
         BookingCar bk = new BookingCar();
         bk.setCar(car);
         bk.setPickUpDate(localDate);
+        bk.setId(2l);
 
         req.getSession().setAttribute(Property.SESSION_BOOKING_ATTRIBUTE_NAME, bk);
-        req.getRequestDispatcher("/WEB-INF/pages/payment.jsp").forward(req, resp);
+        //req.getRequestDispatcher("/payment").forward(req, resp);
+        resp.sendRedirect(req.getContextPath()+"/payment");
     }
 }

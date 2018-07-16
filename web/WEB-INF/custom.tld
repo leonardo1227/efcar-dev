@@ -60,4 +60,10 @@
         </attribute>
     </tag>
 
+    <tag>
+        <name>currentDateTime</name>
+        <tag-class>edu.mum.cs.cs472wap.efcar.tag.CurrentDateTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+
 </taglib>

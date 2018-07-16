@@ -9,14 +9,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://kwonnam.pe.kr/jsp/template-inheritance" prefix="layout"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ taglib prefix = "ct" uri = "http://cs.mum.edu/cs472wap/efcar/custom/tags"%>
+
 
 <layout:extends name="base">
     <layout:put block="titlePage" type="REPLACE">
         Home page!!!
     </layout:put>
     <layout:put block="styleLinks" type="REPLACE">
-        <script src="/project/resources/js/search.js"></script>
+        <script src="<c:url value="/resources/js/search.js"/>"></script>
     </layout:put>
     <layout:put block="content" type="REPLACE">
         <div class="searchBoxContainer">
@@ -38,13 +39,14 @@
                             <label>Brand:
                                 <select name="brand" id="ddlBrand">
                                     <option value="all" >all</option>
-                                        <c:forEach items="${brands}" var="brand">
-                                            <option value="${brand}" >${brand}</option>
-                                        </c:forEach>
+                                    <c:forEach items="${brands}" var="brand">
+                                        <option value="${brand}" >${brand}</option>
+                                    </c:forEach>
                                 </select>
                             </label>
                             <br/><br/>
-                            <label>Data: <input type="date" id="txtDate"></label><br/><br/>
+                            <label>Data: <ct:currentDateTime/>
+                            </label><br/><br/>
                             <input type="button" id="btnSearch" value="search">
                         </fieldset>
                     </div>

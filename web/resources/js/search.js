@@ -101,11 +101,13 @@ function setProductList(data){
 }
 
 function doSelectProduct(id){
+    var date = $("#txtDate").val();
     $.ajax({
         url : 'select',
         type : 'POST',
         data : {
-            'carId' : id,
+            'date': date,
+            'carId' : id
         },
         dataType:'json',
         error : function(request,error)
