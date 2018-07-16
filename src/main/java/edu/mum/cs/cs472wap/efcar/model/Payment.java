@@ -7,6 +7,7 @@ public class Payment {
     private String cardNameHolder;
     private String cardCVNumber;
     private String cardDueDate;
+    private CardType cardType;
 
     public Long getId() {
         return id;
@@ -48,13 +49,22 @@ public class Payment {
         this.cardDueDate = cardDueDate;
     }
 
-    public Payment(Long id, String cardNumber, String cardNameHolder, String cardCVNumber, String cardDueDate) {
+    public CardType getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(CardType cardType) {
+        this.cardType = cardType;
+    }
+
+    public Payment(Long id, String cardNumber, String cardNameHolder, String cardCVNumber, String cardDueDate, CardType cardType) {
 
         this.id = id;
         this.cardNumber = cardNumber;
         this.cardNameHolder = cardNameHolder;
         this.cardCVNumber = cardCVNumber;
         this.cardDueDate = cardDueDate;
+        this.cardType = cardType;
     }
 
     public Payment() {

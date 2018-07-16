@@ -1,0 +1,26 @@
+h3{
+    margin-top: 0;
+    text-align: center;
+}
+
+fieldset{
+    width: 80%;
+    overflow: auto;
+    margin: auto auto 20px;
+}
+
+fieldset > fieldset{
+    width: 98%;
+}
+
+legend{
+    color: blue;
+}
+
+.twoColumns{
+    column-count: 2;
+}
+
+.twoColumns > label{
+    display: block;
+}

@@ -20,6 +20,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/resources/css/main.css'/>"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <layout:block name="styleLinks">
+
+    </layout:block>
 </head>
 <body>
 <header>
@@ -27,9 +30,16 @@
         <img src="<c:url value='/resources/images/icon.png'/>" alt="icon-EFcar"/>
         <h1>EF Cart - Rentar car service</h1>
         <div class="headerMenu">
-            <span>Sign In</span> -
-            <span>Sing Up</span> -
-            <span>Sign Out</span>
+            <c:choose>
+                <c:when test="${userLogged!=null}">
+                    <form id="logoutForm" method="post" action="logout">
+                        <button type="submit"><c:out value="Logout"/></button>
+                    </form>
+                </c:when>
+                <c:otherwise>
+                    <a href="<c:url value="/login"/>"><button><c:out value="Login"/></button></a>
+                </c:otherwise>
+            </c:choose>
         </div>
     </layout:block>
 </header>
