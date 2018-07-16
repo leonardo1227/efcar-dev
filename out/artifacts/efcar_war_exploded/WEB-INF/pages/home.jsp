@@ -8,6 +8,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://kwonnam.pe.kr/jsp/template-inheritance" prefix="layout"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.ArrayList" %>
 
 <layout:extends name="base">
     <layout:put block="titlePage" type="REPLACE">
@@ -32,11 +34,10 @@
                             </label><br/><br/>
                             <label>Brand:
                                 <select name="brand" id="ddlBrand">
-                                    <option value="all">all</option>
-                                    <option value="Volvo">Volvo</option>
-                                    <option value="Ford">Ford</option>
-                                    <option value="Fiat">Fiat</option>
-                                    <option value="Audi">Audi</option>
+                                    <option value="all" >all</option>
+                                        <c:forEach items="${brands}" var="brand">
+                                            <option value="${brand}" >${brand}</option>
+                                        </c:forEach>
                                 </select>
                             </label>
                             <br/><br/>

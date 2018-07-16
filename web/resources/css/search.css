@@ -6,7 +6,7 @@
     border-radius: 2;
 }
 
-    .searchBoxContainer {
+.searchBoxContainer {
     margin-left: 4%;
     margin-top: 1%;
     position: absolute;
@@ -48,6 +48,27 @@
     margin-right: 60px;
     margin-bottom: 20px;
 }
+
+.pagination{
+    position:relative;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: #ff9d50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
 
 
 

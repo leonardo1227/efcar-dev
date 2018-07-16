@@ -79,12 +79,11 @@ public class DataService {
     }
 
     public static List<Car> getCarListSearch(String type, String brand,  String model, LocalDate date ) {
-        Predicate<Car> pModel = (x) -> x.getModel().getName().contains(model);
+        Predicate<Car> pModel = (x) -> x.getModel().getName().toLowerCase().contains(model.toLowerCase());
         Predicate<Car> pType  = (x) -> type.equals("all") || x.getModel().getType().equals(CarType.valueOf(type));
         Predicate<Car> pBrand = (x) -> brand.equals("all") || x.getModel().getBrand().getName().equals(brand);
         Predicate<Car> pDate  = (x) -> x.getBookings().stream().filter(y -> date.isAfter(y.getPickUpDate())
                                     && date.isBefore(y.getDropOffDate())).count() > 0;
-
 
         return getCarListByPredicate(pModel, pType,pBrand);
     }
