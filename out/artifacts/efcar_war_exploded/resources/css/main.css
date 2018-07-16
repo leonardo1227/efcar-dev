@@ -1,0 +1,49 @@
+@font-face {
+font-family: "Junction";
+src: url("../fonts/Junction-regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Junction";
+    src: url("../fonts/Junction-bold.otf") format("opentype");
+    font-weight: bold;
+    }
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #cccccc;
+    font-family: Junction, Arial;
+    font-size: 14px;
+    color: black;
+}
+
+header{
+    background-color: yellow;
+    overflow: auto;
+    padding: 15px;
+    font-weight: bold;
+}
+
+header img, header h1 {
+    float: left;
+}
+
+.headerMenu {
+    clear: both;
+    text-align: right;
+}
+
+#container {
+    width: 1300px;
+    margin: 0 auto;
+    background-color: white;
+    min-height: 700px;
+}
+
+footer{
+    width: 100%;
+    background-color: black;
+    min-height: 100px;
+    color: white;
+}

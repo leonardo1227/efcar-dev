@@ -34,6 +34,8 @@ function doSearch(model, brand, type, date){
         },
         dataType:'json',
         success : function(data) {
+            var aa = data;
+            setProductList(data);
         },
         error : function(request,error)
         {
@@ -80,17 +82,8 @@ function setProductList(data){
     });
 }
 
-function doSelectProduct(id){
-    $.ajax({
-        url : 'select',
-        type : 'POST',
-        data : {
-            'carId' : id,
-        },
-        dataType:'json',
-        error : function(request,error)
-        {
-            alert("Request: "+JSON.stringify(request));
-        }
+function setProductClickAction(){
+    $(".productClicable").click(function(e){
+        var parent = e.target.parent;
     });
 }
