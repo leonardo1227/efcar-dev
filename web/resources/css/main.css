@@ -23,6 +23,9 @@ header{
     overflow: auto;
     padding: 15px;
     font-weight: bold;
+    z-index: 100;
+    position: relative;
+    box-shadow: 0 0 10px #888;
 }
 
 header img, header h1 {
@@ -89,6 +92,10 @@ input[type="submit"], button {
     text-transform: uppercase;
 }
 
+input[type="submit"]:disabled, button:disabled {
+    background-color: #F4793E99;
+}
+
 fieldset{
     margin-top: 20px;
     margin-bottom: 20px;
@@ -132,7 +139,7 @@ select {
 .profilePhoto {
     float: left;
     margin-right: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     position: relative;
 }
 
