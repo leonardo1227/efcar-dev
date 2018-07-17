@@ -125,8 +125,9 @@ $(function () {
 
     function showPopup(value) {
         $('.messagePost').fadeIn("slow");
-        if (value.includes("info")) {
+        if (value.changeType === "info") {
             $('.messagePost').html("Your Information has been updated");
+            $('.userLink').html("Hello " + value.firstName);
         } else {
             $('.messagePost').html("Your password has been changed");
         }

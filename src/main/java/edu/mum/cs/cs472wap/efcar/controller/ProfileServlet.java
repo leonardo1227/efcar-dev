@@ -27,6 +27,8 @@ public class ProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String changeType = request.getParameter("changeType");
 
+        User user = (User) request.getSession().getAttribute(SESSION_USER_ATTRIBUTE_NAME);
+
         if (changeType.equals("info")) {
             String userName = request.getParameter("userName");
             String firstName = request.getParameter("firstName");
@@ -41,7 +43,6 @@ public class ProfileServlet extends HttpServlet {
             String state = request.getParameter("state");
             String zipCode = request.getParameter("zipCode");
 
-            User user = (User) request.getSession().getAttribute(SESSION_USER_ATTRIBUTE_NAME);
             user.setUsername(userName);
             user.setFirstName(firstName);
             user.setLastName(lastName);
@@ -55,16 +56,36 @@ public class ProfileServlet extends HttpServlet {
             user.getAddress().setState(state);
             user.getAddress().setZipCode(zipCode);
 
+            DataService.getUsers().put(user.getId(), user);
 
         } else if (changeType.equals("password")) {
             String newPassword = request.getParameter("newPassword");
-            User user = (User) request.getSession().getAttribute(SESSION_USER_ATTRIBUTE_NAME);
             user.setPassword(newPassword);
         }
+
+        DataService.getUsers().put(user.getId(), user);
 
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
 
-        out.print(new Gson().toJson("{changeType: " + changeType + "}"));
+        out.print(new Gson().toJson(new ChangeTypeMessage(changeType, user.getFirstName())));
+    }
+
+    private static class ChangeTypeMessage {
+        private String changeType;
+        private String firstName;
+
+        ChangeTypeMessage(String changeType, String firstName) {
+            this.changeType = changeType;
+            this.firstName = firstName;
+        }
+
+        public String getChangeType() {
+            return changeType;
+        }
+
+        public String getFirstName() {
+            return firstName;
+        }
     }
 }
