@@ -1,5 +1,6 @@
 package edu.mum.cs.cs472wap.efcar.controller;
 
+import edu.mum.cs.cs472wap.efcar.Util.Property;
 import edu.mum.cs.cs472wap.efcar.data.DataService;
 import edu.mum.cs.cs472wap.efcar.model.BookingCar;
 import edu.mum.cs.cs472wap.efcar.model.CardType;
@@ -35,15 +36,16 @@ public class PaymentController extends HttpServlet {
         payment.setCardDueDate(req.getParameter("cardDueDate"));
         payment.setCardType(CardType.valueOf(req.getParameter("cardType")));
 
-        BookingCar bookingCar = (BookingCar) session.getAttribute("bookingCar");///<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        BookingCar bookingCar = (BookingCar) session.getAttribute(Property.SESSION_BOOKING_ATTRIBUTE_NAME);
 
         bookingCar.setPayment(payment);
-        User user = (User) session.getAttribute("userLogged");
+        User user = (User) session.getAttribute(Property.SESSION_USER_ATTRIBUTE_NAME);
         bookingCar.setUser(user);
         bookingCar.setStarMilleage(bookingCar.getCar().getMileage());
+
         bookingCar.setTotalPrice(bookingCar.getCar().getModel().getPricePerDay() * bookingCar.getDaysOfRent());
 
-        session.setAttribute("bookingCar", bookingCar);
+        session.setAttribute(Property.SESSION_BOOKING_ATTRIBUTE_NAME, bookingCar);
         DataService.getUsers().get(user.getId()).getBookings().add(bookingCar);
 
         resp.sendRedirect(req.getContextPath()+"/bookingInfoConfirmation");
