@@ -24,31 +24,35 @@
             <div class="searchBox">
                 <form>
                     <div id="searchFormDiv">
-                        <fieldset>
-                            <legend>Search a car:</legend>
-                            <label>Model name: <input type="text" id="txtModel"><br/><br/></label>
-                            <label>Type:
-                                <select name="type" id="ddlType">
-                                    <option value="all">all</option>
-                                    <option value="CONVERTIBLE">Convertible</option>
-                                    <option value="STANDARD">Standard</option>
-                                    <option value="PREMIUM">Premium</option>
-                                    <option value="COMPACT">Compact</option>
-                                </select>
-                            </label><br/><br/>
-                            <label>Brand:
-                                <select name="brand" id="ddlBrand">
-                                    <option value="all" >all</option>
-                                    <c:forEach items="${brands}" var="brand">
-                                        <option value="${brand}" >${brand}</option>
-                                    </c:forEach>
-                                </select>
-                            </label>
-                            <br/><br/>
-                            <label>Data: <ct:currentDateTime/>
-                            </label><br/><br/>
-                            <input type="button" id="btnSearch" value="search">
-                        </fieldset>
+                        <h2>Search a car:</h2>
+                        <div class="fieldset"><label>Model name: <input type="text" id="txtModel"></label></div>
+                        <div class="fieldset"><label>Type:
+                            <select name="type" id="ddlType">
+                                <option value="all">all</option>
+                                <option value="CONVERTIBLE">Convertible</option>
+                                <option value="STANDARD">Standard</option>
+                                <option value="PREMIUM">Premium</option>
+                                <option value="COMPACT">Compact</option>
+                            </select>
+                        </label></div>
+                        <div class="fieldset"><label>Brand:
+                            <select name="brand" id="ddlBrand">
+                                <option value="all" >all</option>
+                                <c:forEach items="${brands}" var="brand">
+                                    <option value="${brand}" >${brand}</option>
+                                </c:forEach>
+                            </select>
+                        </label></div>
+
+                        <div class="fieldset">
+                        <label>Start: <ct:currentDateTime/>
+                        </label></div>
+
+                        <div class="fieldset">
+                            <label>End: <input type="date" id="txtEndDate">
+                            </label></div>
+                        <input type="button" id="btnSearch" value="search">
+
                     </div>
 
                 </form>

@@ -1,9 +1,8 @@
 .searchBox {
     background-color: #ff7c38;
     position: absolute;
-    width: 300px;
-    height: 200px;
-    border-radius: 2;
+    width: 320px;
+    height: 400px;
 }
 
 .searchBoxContainer {
@@ -13,6 +12,10 @@
     width: 380px;
     height: 100%;
     float: left;
+}
+
+input{
+
 }
 
 * {
