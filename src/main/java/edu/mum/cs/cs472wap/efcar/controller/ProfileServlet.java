@@ -1,5 +1,6 @@
 package edu.mum.cs.cs472wap.efcar.controller;
 
+import com.google.gson.Gson;
 import edu.mum.cs.cs472wap.efcar.data.DataService;
 import edu.mum.cs.cs472wap.efcar.model.User;
 
@@ -9,22 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 
 import static edu.mum.cs.cs472wap.efcar.Util.Property.SESSION_USER_ATTRIBUTE_NAME;
 
-@WebServlet("/profile")
+@WebServlet(name = "profile", urlPatterns = "/profile")
 public class ProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String change = request.getParameter("change");
-        if (change != null && change.equals("1")) {
-            request.setAttribute("change", "Your Information has been updated");
-        } else if (change != null && change.equals("2")) {
-            request.setAttribute("change", "Your password has been changed");
-        }
-
         request.getRequestDispatcher("/WEB-INF/pages/profile.jsp").forward(request, response);
     }
 
@@ -60,9 +55,16 @@ public class ProfileServlet extends HttpServlet {
             user.getAddress().setState(state);
             user.getAddress().setZipCode(zipCode);
 
-            response.sendRedirect(request.getContextPath() + "/profile?change=1");
+
         } else if (changeType.equals("password")) {
-            response.sendRedirect(request.getContextPath() + "/profile?change=2");
+            String newPassword = request.getParameter("newPassword");
+            User user = (User) request.getSession().getAttribute(SESSION_USER_ATTRIBUTE_NAME);
+            user.setPassword(newPassword);
         }
+
+        response.setContentType("application/json");
+        PrintWriter out = response.getWriter();
+
+        out.print(new Gson().toJson("{changeType: " + changeType + "}"));
     }
 }

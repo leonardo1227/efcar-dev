@@ -1,15 +1,12 @@
 $(function () {
-    setTimeout(function (e) {
-        $('.messagePost').fadeOut("slow");
-    }, 2000);
+
+
+    $(".messagePost").hide();
 
     $('#resetPasswordForm').validate({
         errorElement: 'div',
         onfocusout: false,
         rules: {
-            oldPassword: {
-                required: true
-            },
             newPassword: {
                 required: true
             },
@@ -18,15 +15,23 @@ $(function () {
             }
         },
         messages: {
-            oldPassword: "Write your old password",
             newPassword: "Write a valid password",
             newPasswordConfirm: "Write the same password"
         },
-        submitHandler: function(form) {
-            form.submit();
+        submitHandler: function (form) {
+            $.ajax("profile", {
+                "type": "POST",
+                "data": {
+                    "changeType": "password",
+                    "newPassword": $("#newPassword").val()
+                }
+            })
+                .done(showPopup)
+                .fail(ajaxError)
+                .always(hidePopup);
+            return false;
         }
     });
-
 
 
     $('#informationForm').validate({ // initialize the plugin
@@ -91,8 +96,49 @@ $(function () {
             state: "Please insert a valid state",
             zipCode: "Please insert a valid zip Code",
         },
-        submitHandler: function(form) {
-            form.submit();
+        submitHandler: function (form) {
+
+            $.ajax("profile", {
+                "type": "POST",
+                "data": {
+                    "changeType": "info",
+                    "userName": $("#userName").val(),
+                    "firstName": $("#firstName").val(),
+                    "lastName": $("#lastName").val(),
+                    "dateOfBirth": $("#dateOfBirth").val(),
+                    "gender": $("#gender").val(),
+                    "phone": $("#phone").val(),
+                    "email": $("#email").val(),
+                    "line1": $("#line1").val(),
+                    "line2": $("#line2").val(),
+                    "city": $("#city").val(),
+                    "state": $("#state").val(),
+                    "zipCode": $("#zipCode").val()
+                }
+            })
+                .done(showPopup)
+                .fail(ajaxError)
+                .always(hidePopup);
+            return false;
         }
     });
+
+    function showPopup(value) {
+        $('.messagePost').fadeIn("slow");
+        if (value.includes("info")) {
+            $('.messagePost').html("Your Information has been updated");
+        } else {
+            $('.messagePost').html("Your password has been changed");
+        }
+    }
+
+    function hidePopup(value) {
+        setTimeout(function (e) {
+            $('.messagePost').fadeOut("slow");
+        }, 2000);
+    }
+
+    function ajaxError(xhr, status, exception) {
+        console.log(xhr, status, exception);
+    }
 });

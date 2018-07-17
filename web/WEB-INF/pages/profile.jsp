@@ -80,9 +80,6 @@
                 <fieldset>
                     <legend>Change password</legend>
                     <form id="resetPasswordForm" method="post">
-                        <cus:validatorInput name="oldPassword" placeholder="Old password" type="password" value=""
-                                            required="true"/>
-
                         <cus:validatorInput name="newPassword" placeholder="New password" type="password" value=""
                                             required="true"/>
 
@@ -93,11 +90,9 @@
                     </form>
                 </fieldset>
 
-                <c:if test="${change != null && change != ''}">
-                    <div class="messagePost">
-                            ${change}
-                    </div>
-                </c:if>
+                <div class="messagePost">
+                        ${change}
+                </div>
             </div>
 
             <c:if test="${fn:length(userLogged.bookings) > 0}">
