@@ -120,13 +120,14 @@ public class DataService {
         users = new HashMap<>();
 
         Person person = new Person(1L,
-                "esat",
-                "akyürek",
-                LocalDate.of(1988, 12, 6),
+                "Leonardo Samuel",
+                "Tolosa Contreras",
+                LocalDate.of(1991, 1, 31),
                 "male",
-                new PersonContact(1L, "esat.akyürek@example.com", "(667)-881-9739"),
-                new PersonAddress(1L, "4782 anafartalar cd", "", "eskişehir", "ankara", "77537"),
-                "https://randomuser.me/api/portraits/men/18.jpg");
+                new PersonContact(1L, "ltolosacontreras@mum.edu", "(510)-853-9505"),
+                new PersonAddress(1L, "1000 N 4th Street", "MR#131", "Fairfield", "Iowa", "52557"),
+                "https://avatars3.githubusercontent.com/u/12447426?s=460&v=4");
+                //"https://randomuser.me/api/portraits/men/18.jpg");
         User user = new User("user1", "pass1", person);
         BookingCar bookingCar = new BookingCar(1L,
                 cars.values().stream().skip(4).limit(1).findFirst().get(),
@@ -136,10 +137,10 @@ public class DataService {
                 LocalDate.of(2015, 07, 10),
                 LocalDate.of(2015, 07, 10),
                 100.0, 200.0,
-                new Payment(1L, "123456", "Edwin Cobos", "10357893", "12/22", CardType.Credit),
+                new Payment(1L, "4221345612341145", "Leonardo Tolosa", "123", "12/22", CardType.Credit),
                 150.0);
         user.addBooking(bookingCar);
-        bookingCar = new BookingCar(1L,
+        bookingCar = new BookingCar(2L,
                 cars.values().stream().skip(8).limit(1).findFirst().get(),
                 user,
                 100.0,
@@ -147,11 +148,11 @@ public class DataService {
                 LocalDate.of(2015, 07, 10),
                 LocalDate.of(2015, 07, 10),
                 100.0, 200.0,
-                new Payment(1L, "123456", "Edwin Cobos", "10357893", "12/22", CardType.Credit),
+                new Payment(2L, "4221345612341145", "Leonardo Tolosa", "123", "12/22", CardType.Credit),
                 150.0);
         user.addBooking(bookingCar);
 
-        bookingCar = new BookingCar(1L,
+        bookingCar = new BookingCar(3L,
                 cars.values().stream().skip(22).limit(1).findFirst().get(),
                 user,
                 100.0,
@@ -159,30 +160,32 @@ public class DataService {
                 LocalDate.of(2015, 07, 10),
                 LocalDate.of(2015, 07, 10),
                 100.0, 200.0,
-                new Payment(1L, "123456", "Edwin Cobos", "10357893", "12/22", CardType.Credit),
+                new Payment(3L, "4221345612341145", "Leonardo Tolosa", "123", "12/22", CardType.Credit),
                 150.0);
         user.addBooking(bookingCar);
         users.put(user.getId(), user);
 
         person = new Person(2L,
-                "terry",
-                "little",
-                LocalDate.of(1989, 11, 7),
-                "female",
-                new PersonContact(2L, "terry.little@example.com", "00-8322-2240"),
-                new PersonAddress(2L, "5140 robinson rd", "", "rockhampton", "northern territory", "528"),
-                "https://randomuser.me/api/portraits/women/81.jpg");
+                "Gustavo",
+                "Souza",
+                LocalDate.of(1989, 9, 15),
+                "male",
+                new PersonContact(2L, "gsouza@mum.edu", "(386)-500-8182"),
+                new PersonAddress(2L, "1000 N 4th Street", "MR#303", "Fairfield", "Iowa", "52557"),
+                "https://avatars3.githubusercontent.com/u/13860570?s=460&v=4");
+                //"https://randomuser.me/api/portraits/women/81.jpg");
         user = new User("user2", "pass2", person);
         users.put(user.getId(), user);
 
         person = new Person(3L,
-                "stephanie",
-                "howard",
-                LocalDate.of(1990, 2, 8),
+                "Edwin",
+                "Cobos",
+                LocalDate.of(1988, 12, 6),
                 "female",
-                new PersonContact(3L, "stephanie.howard@example.com", "011-101-6539"),
-                new PersonAddress(3L, "5592 jones road", "", "cork", "kildare", "11645"),
-                "https://randomuser.me/api/portraits/women/51.jpg");
+                new PersonContact(3L, "ecobosfonseca@mum.edu", "(201)-983-2752"),
+                new PersonAddress(3L, "1000 N 4th Street", "MR#172", "Fairfield", "Iowa", "52557"),
+                "https://avatars2.githubusercontent.com/u/929504?s=400&v=4");
+                //"https://randomuser.me/api/portraits/women/51.jpg");
         user = new User("user3", "pass3", person);
         users.put(user.getId(), user);
     }
