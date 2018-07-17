@@ -38,12 +38,11 @@ public class PaymentController extends HttpServlet {
 
         BookingCar bookingCar = (BookingCar) session.getAttribute(Property.SESSION_BOOKING_ATTRIBUTE_NAME);
 
-        bookingCar.setId(new Random().nextLong());
         bookingCar.setPayment(payment);
         User user = (User) session.getAttribute(Property.SESSION_USER_ATTRIBUTE_NAME);
         bookingCar.setUser(user);
         bookingCar.setStarMilleage(bookingCar.getCar().getMileage());
-
+        bookingCar.setId(user.getBookings().size()+1L);
         bookingCar.setTotalPrice(bookingCar.getCar().getModel().getPricePerDay() * bookingCar.getDaysOfRent());
 
         session.setAttribute(Property.SESSION_BOOKING_ATTRIBUTE_NAME, bookingCar);
