@@ -29,9 +29,14 @@
 <body>
 <header>
     <layout:block name="header">
-        <img src="<c:url value='/resources/images/icon.png'/>" alt="icon-EFcar"/>
-        <h1>EF Cart - Rentar car service</h1>
+        <a href='<c:url value="/"/>'>
+            <img src="<c:url value='/resources/images/icon.png'/>" alt="icon-EFcar"/>
+            <h1>EF Cart - Rentar car service</h1>
+        </a>
         <div class="headerMenu">
+            <c:if test="${userLogged != null}">
+                <a class="userLink" href="<c:url value="/profile"/>">Hello ${userLogged.firstName}</a>
+            </c:if>
             <c:choose>
                 <c:when test="${userLogged!=null}">
                     <form id="logoutForm" method="post" action="logout">
@@ -39,7 +44,9 @@
                     </form>
                 </c:when>
                 <c:otherwise>
-                    <a href="<c:url value="/login"/>"><button><c:out value="Login"/></button></a>
+                    <a href="<c:url value="/login"/>">
+                        <button><c:out value="Login"/></button>
+                    </a>
                 </c:otherwise>
             </c:choose>
         </div>
@@ -54,7 +61,19 @@
 
 <footer>
     <layout:block name="footer">
-        Contact Info
+        <pre>
+        Copyright &copy;
+        <br/>
+        Edwin Alejandro Cobos Fonseca
+        <br/>
+        Leonardo Samuel Tolosa Contreras
+        <br/>
+        Gustavo do Rego Souza
+        <br/>
+        Maharishi University of Management
+        <br/>
+        Jai Guru Dev
+        </pre>
     </layout:block>
 </footer>
 </body>
