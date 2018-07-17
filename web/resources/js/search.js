@@ -82,7 +82,15 @@ function setProductList(data){
         column.append(a1);
         var a2 = $("<a href='' class='productClicable'>\">");
         a2.text(data[key].model.name + "  " + data[key].model.year);
-        column.append(a2);
+        var a3 = $("<a href='' class='productClicable'>\">");
+        a3.text("price: $" + data[key].model.pricePerDay);
+        var p1 = $("<p>");
+        var p2 = $("<p>");
+        p1.append(a2);
+        p2.append(a3)
+
+        column.append(p1);
+        column.append(p2);
         row.append(column);
     }
 
