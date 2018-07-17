@@ -111,7 +111,7 @@ function setProductList(data){
             return false;
         }
 
-        window.location.href =   window.location.href.replace("#","") + "/select?carId=" +id+ "&date=" + date + "&endDate=" + endDate;
+        window.location.href = getContextPath() + "/select?carId=" +id+ "&date=" + date + "&endDate=" + endDate;
         return false;
     });
 
@@ -154,4 +154,8 @@ function compareDates(D1,D2){
     } else {
         return -1;
     }
+}
+
+function getContextPath() {
+    return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
 }
