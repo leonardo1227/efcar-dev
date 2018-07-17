@@ -36,7 +36,8 @@ public class LoginController extends HttpServlet {
             if(redirectUrl!=null){
                 resp.sendRedirect(redirectUrl);
             }else{
-                resp.sendRedirect(req.getContextPath()+"/home");
+                //resp.sendRedirect(req.getContextPath()+"/home");
+                resp.sendRedirect(req.getContextPath());
             }
         }else{
             if(redirectUrl!=null){

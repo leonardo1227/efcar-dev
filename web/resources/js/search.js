@@ -23,8 +23,8 @@ function setCurrentDate(){
 function doSearch(model, brand, type, date){
 
     $.ajax({
-        url : 'home',
-        type : 'POST',
+        url : 'search',
+        type : 'GET',
         data : {
             'date' : date,
             'model' : model,
@@ -82,7 +82,15 @@ function setProductList(data){
         column.append(a1);
         var a2 = $("<a href='' class='productClicable'>\">");
         a2.text(data[key].model.name + "  " + data[key].model.year);
-        column.append(a2);
+        var a3 = $("<a href='' class='productClicable'>\">");
+        a3.text("price: $" + data[key].model.pricePerDay);
+        var p1 = $("<p>");
+        var p2 = $("<p>");
+        p1.append(a2);
+        p2.append(a3)
+
+        column.append(p1);
+        column.append(p2);
         row.append(column);
     }
 
@@ -96,7 +104,22 @@ function setProductList(data){
         var id = e.target.parentElement.parentElement.id.replace("column", "");
         var endDate = $("#txtEndDate").val();
         var date = $("#txtDate").val();
-        window.location.href =   window.location.href + "/select?carId=" +id+ "&date=" + date + "&endDate=" + endDate;
+        if(!isValidDate(endDate)){
+            alert("pick a valid end date!");
+            return false;
+        }
+
+        if(!isValidDate(date)){
+            alert("pick a valid start date!");
+            return false;
+        }
+
+        if(compareDates(endDate,date) == -1){
+            alert("the end date must be after the start date!");
+            return false;
+        }
+
+        window.location.href = getContextPath() + "/select?carId=" +id+ "&date=" + date + "&endDate=" + endDate;
         return false;
     });
 
@@ -131,4 +154,16 @@ function isValidDate(input){
         }
     }
     return status;
+}
+
+function compareDates(D1,D2){
+    if ((new Date(D1).getTime()) >= (new Date(D2).getTime())) {
+        return 1;
+    } else {
+        return -1;
+    }
+}
+
+function getContextPath() {
+    return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
 }

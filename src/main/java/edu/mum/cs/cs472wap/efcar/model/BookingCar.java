@@ -1,7 +1,7 @@
 package edu.mum.cs.cs472wap.efcar.model;
 
-import java.time.Duration;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class BookingCar {
 
@@ -123,15 +123,16 @@ public class BookingCar {
         this.finalTotalPrice = finalTotalPrice;
     }
 
-    public Double getRanMilleages(){
-        return this.getFinalMilleage()-this.getStarMilleage();
+    public Double getRanMilleages() {
+        return this.getFinalMilleage() - this.getStarMilleage();
     }
 
-    public Integer getRealDaysOfRent(){
-        return  ((int) Duration.between(this.getPickUpDate(), this.realDropOffDate).toDays());
+
+    public long getRealDaysOfRent() {
+        return ChronoUnit.DAYS.between(this.pickUpDate,this.realDropOffDate);
     }
 
-    public Integer getDaysOfRent(){
-        return ((int) Duration.between(this.getPickUpDate(),this.dropOffDate).toDays());
+    public long getDaysOfRent() {
+        return ChronoUnit.DAYS.between(this.pickUpDate,this.getDropOffDate());
     }
 }
