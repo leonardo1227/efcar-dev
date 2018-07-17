@@ -19,13 +19,14 @@
     <layout:put block="content" type="REPLACE">
         <div id="loginBox">
             <form method="post">
+                <h2>Sign In</h2>
                 <ct:textField name="username" label="Username" required="true"/>
                 <ct:textField name="password" label="Password" required="true" secretText="true"/>
                 <div id="loginControls">
                     <button type="submit"><c:out value="Log In"/></button>
                 </div>
             </form>
-
+            <a class="loginLink" href="<c:url value='/registration'/>">Create account</a>
         </div>
         <div id="messages">
             <c:if test="${message!=null}">

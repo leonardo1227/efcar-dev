@@ -21,7 +21,7 @@
         <div class="profile">
             <h2>Profile</h2>
             <div class="profileContent">
-                <form method="post">
+                <form id="informationForm" method="post">
                     <div class="profilePhoto">
                         <img src="<c:url value='${userLogged.photoURL}'/>" alt="no-photo" width="250"/>
                         <div class="editArea">
@@ -79,14 +79,25 @@
                 </form>
                 <fieldset>
                     <legend>Change password</legend>
-                    <form method="post">
-                        <input type="password" id="passwordId" name="password" placeholder="Old Password" required/>
-                        <input type="password" id="passwordConfirmId" name="passwordConfirm" placeholder="New password"
-                               required/>
+                    <form id="passwordForm" method="post">
+                        <cus:validatorInput name="oldPassword" placeholder="Old password" type="password" value=""
+                                            required="true"/>
+
+                        <cus:validatorInput name="newPassword" placeholder="New password" type="password" value=""
+                                            required="true"/>
+
+                        <cus:validatorInput name="newPasswordConfirm" placeholder="Confirm password" type="password"
+                                            value="" required="true"/>
                         <input type="hidden" name="changeType" value="password">
                         <input type="submit" value="Change password"/>
                     </form>
                 </fieldset>
+
+                <c:if test="${change != null && change != ''}">
+                    <div class="messagePost">
+                            ${change}
+                    </div>
+                </c:if>
             </div>
 
             <c:if test="${fn:length(userLogged.bookings) > 0}">

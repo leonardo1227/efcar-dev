@@ -8,7 +8,7 @@ import java.io.IOException;
 public class ValidatorInputTag extends SimpleTagSupport {
 
     private String name;
-    private String placeHolder;
+    private String placeholder;
     private String value;
     private String type;
     private boolean required;
@@ -18,7 +18,7 @@ public class ValidatorInputTag extends SimpleTagSupport {
         JspWriter out = getJspContext().getOut();
 
         out.println("<div class='formInput'>");
-        out.println("<input type='" + type + "' name='" + name + "' placeholder='" + placeHolder + "' value='" + value + "'");
+        out.println("<input type='" + type + "' id='" + name + "' name='" + name + "' placeholder='" + placeholder + "' value='" + value + "'");
         if (required)
             out.println(" required");
         out.println(">");
@@ -29,8 +29,8 @@ public class ValidatorInputTag extends SimpleTagSupport {
         this.name = name;
     }
 
-    public void setPlaceHolder(String placeHolder) {
-        this.placeHolder = placeHolder;
+    public void setPlaceholder(String placeholder) {
+        this.placeholder = placeholder;
     }
 
     public void setValue(String value) {
