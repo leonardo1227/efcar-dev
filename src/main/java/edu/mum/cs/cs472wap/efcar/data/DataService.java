@@ -50,6 +50,10 @@ public class DataService {
         return users.get(id);
     }
 
+    public static void setNewUser(User user) {
+        users.put(user.getId(), user);
+    }
+
     /*Cars*/
     public static Map<Long, Car> getCars() {
         return cars;

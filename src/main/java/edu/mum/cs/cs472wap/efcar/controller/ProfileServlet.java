@@ -14,12 +14,17 @@ import java.time.LocalDate;
 import static edu.mum.cs.cs472wap.efcar.Util.Property.SESSION_USER_ATTRIBUTE_NAME;
 
 @WebServlet("/profile")
-public class profileServlet extends HttpServlet {
+public class ProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String change = request.getParameter("change");
-        request.setAttribute("change", change);
+        if (change != null && change.equals("1")) {
+            request.setAttribute("change", "Your Information has been updated");
+        } else if (change != null && change.equals("2")) {
+            request.setAttribute("change", "Your password has been changed");
+        }
+
         request.getRequestDispatcher("/WEB-INF/pages/profile.jsp").forward(request, response);
     }
 
@@ -27,7 +32,7 @@ public class profileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String changeType = request.getParameter("changeType");
 
-        if(changeType.equals("info")) {
+        if (changeType.equals("info")) {
             String userName = request.getParameter("userName");
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
@@ -41,7 +46,7 @@ public class profileServlet extends HttpServlet {
             String state = request.getParameter("state");
             String zipCode = request.getParameter("zipCode");
 
-            User user = (User)request.getSession().getAttribute(SESSION_USER_ATTRIBUTE_NAME);
+            User user = (User) request.getSession().getAttribute(SESSION_USER_ATTRIBUTE_NAME);
             user.setUsername(userName);
             user.setFirstName(firstName);
             user.setLastName(lastName);
@@ -56,7 +61,7 @@ public class profileServlet extends HttpServlet {
             user.getAddress().setZipCode(zipCode);
 
             response.sendRedirect(request.getContextPath() + "/profile?change=1");
-        }else if(changeType.equals("password")) {
+        } else if (changeType.equals("password")) {
             response.sendRedirect(request.getContextPath() + "/profile?change=2");
         }
     }

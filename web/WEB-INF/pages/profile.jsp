@@ -15,7 +15,7 @@
         Create Account
     </layout:put>
     <layout:put block="styleLinks">
-        <script src="resources/js/registration.js"></script>
+        <script src="resources/js/profile.js"></script>
     </layout:put>
     <layout:put block="content" type="REPLACE">
         <div class="profile">
@@ -79,7 +79,7 @@
                 </form>
                 <fieldset>
                     <legend>Change password</legend>
-                    <form id="passwordForm" method="post">
+                    <form id="resetPasswordForm" method="post">
                         <cus:validatorInput name="oldPassword" placeholder="Old password" type="password" value=""
                                             required="true"/>
 

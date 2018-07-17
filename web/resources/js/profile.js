@@ -1,6 +1,35 @@
 $(function () {
+    setTimeout(function (e) {
+        $('.messagePost').fadeOut("slow");
+    }, 2000);
 
-    $('form').validate({ // initialize the plugin
+    $('#resetPasswordForm').validate({
+        errorElement: 'div',
+        onfocusout: false,
+        rules: {
+            oldPassword: {
+                required: true
+            },
+            newPassword: {
+                required: true
+            },
+            newPasswordConfirm: {
+                equalTo: "#newPassword"
+            }
+        },
+        messages: {
+            oldPassword: "Write your old password",
+            newPassword: "Write a valid password",
+            newPasswordConfirm: "Write the same password"
+        },
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+
+
+
+    $('#informationForm').validate({ // initialize the plugin
         errorElement: 'div',
         onfocusout: false,
         rules: {
@@ -29,7 +58,6 @@ $(function () {
             },
             email: {
                 required: true,
-                email: true,
                 minlength: 2
             },
             line1: {
@@ -47,12 +75,6 @@ $(function () {
             zipCode: {
                 required: true,
                 minlength: 2
-            },
-            password1: {
-                required: true
-            },
-            password2: {
-                equalTo: "#password1"
             }
         },
         messages: {
@@ -64,23 +86,13 @@ $(function () {
             phone: "Please insert a valid phone",
             email: "Please insert a valid email",
             line1: "Please insert a valid line 1",
+            line2: "Please insert a valid line 2",
             city: "Please insert a valid city",
             state: "Please insert a valid state",
             zipCode: "Please insert a valid zip Code",
-            password1: "Enter a valid password",
-            password2: "Does not match",
         },
         submitHandler: function(form) {
-            var allowsubmit = false;
-            var pass = $('#password1').val();
-            var pass2 = $('#password2').val();
-            if(pass === pass2){
-                allowsubmit = true;
-            }
-            if(allowsubmit)
-                form.submit();
+            form.submit();
         }
     });
-
-    $('form').validate();
 });

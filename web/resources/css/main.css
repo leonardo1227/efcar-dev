@@ -197,6 +197,7 @@ select {
 
 .profileContent {
     margin: 20px;
+    position: relative;
 }
 
 .profileHistory {
