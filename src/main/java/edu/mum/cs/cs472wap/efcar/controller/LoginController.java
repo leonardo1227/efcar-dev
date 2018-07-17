@@ -32,11 +32,12 @@ public class LoginController extends HttpServlet {
                 .findFirst();
         if(user.isPresent() && user.get().getPassword().equals(req.getParameter("password"))){
             HttpSession session = req.getSession();
-            session.setAttribute(Property.SESSION_USER_ATTRIBUTE_NAME,user.get());
+            session.setAttribute(Property.SESSION_USER_ATTRIBUTE_NAME,
+                    new User(user.get().getUsername(),user.get().getPassword(),user.get()));
+
             if(redirectUrl!=null){
                 resp.sendRedirect(redirectUrl);
             }else{
-                //resp.sendRedirect(req.getContextPath()+"/home");
                 resp.sendRedirect(req.getContextPath());
             }
         }else{

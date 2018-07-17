@@ -19,9 +19,6 @@ public class CardInformationController extends HttpServlet {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         CardInfo cardInfo = DataService.getCardInfoMap().get(Long.valueOf(req.getParameter("code")));
-        if (cardInfo != null) {
-            cardInfo.setIconUrl(req.getContextPath() + cardInfo.getIconUrl());
-        }
         out.print(new Gson().toJson(cardInfo));
     }
 }

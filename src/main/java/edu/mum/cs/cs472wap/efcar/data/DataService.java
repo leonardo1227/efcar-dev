@@ -27,7 +27,7 @@ public class DataService {
 
     }
 
-    static {
+    public static void loadDataBase() {
         createCars();
         createUsers();
         createBrands();
