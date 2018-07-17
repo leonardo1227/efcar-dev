@@ -23,8 +23,8 @@ function setCurrentDate(){
 function doSearch(model, brand, type, date){
 
     $.ajax({
-        url : 'home',
-        type : 'POST',
+        url : 'search',
+        type : 'GET',
         data : {
             'date' : date,
             'model' : model,
