@@ -10,4 +10,18 @@ $(function () {
     }
     password.change(validatePassword);
     passwordConfirm.keyup(validatePassword);
+
+    $('#informationForm').validate({ // initialize the plugin
+        errorElement: 'div',
+        rules: {
+            firstName: {
+                required: true,
+                minlength: 5
+            },
+            lastName: {
+                required: true,
+                minlength: 5
+            }
+        }
+    });
 });

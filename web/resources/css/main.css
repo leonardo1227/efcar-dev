@@ -210,3 +210,17 @@ select {
 .profileHistory tr:nth-child(odd) {
     background-color: #ffffff;
 }
+
+.formInput {
+    position: relative;
+    display: inline-grid;
+}
+
+.formInput > input {
+    display: inline-block !important;
+}
+
+form div.error {
+    display: inline;
+    color: red;
+}

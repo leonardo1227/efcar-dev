@@ -6,11 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://kwonnam.pe.kr/jsp/template-inheritance" prefix="layout"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "ct" uri = "http://cs.mum.edu/cs472wap/efcar/custom/tags"%>
-
 
 <layout:extends name="base">
     <layout:put block="titlePage" type="REPLACE">

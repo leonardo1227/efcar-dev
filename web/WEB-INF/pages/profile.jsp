@@ -9,6 +9,7 @@
 <%@ taglib uri="http://kwonnam.pe.kr/jsp/template-inheritance" prefix="layout" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="cus" uri="http://cs.mum.edu/cs472wap/efcar/custom/tags" %>
 <layout:extends name="base">
     <layout:put block="titlePage" type="REPLACE">
         Create Account
@@ -28,35 +29,50 @@
                         </div>
                     </div>
 
-                    <input type="text" name="userName" placeholder="User name" value="${userLogged.username}" required>
+                    <cus:validatorInput name="userName" placeholder="User name" type="text"
+                                        value="${userLogged.username}" required="true"/>
 
-                    <input type="text" name="firstName" placeholder="First Name" value="${userLogged.firstName}" required>
+                    <cus:validatorInput name="firstName" placeholder="First Name" type="text"
+                                        value="${userLogged.firstName}" required="true"/>
 
-                    <input type="text" name="lastName" placeholder="Last Name" value="${userLogged.lastName}" required>
+                    <cus:validatorInput name="lastName" placeholder="Last Name" type="text"
+                                        value="${userLogged.lastName}" required="true"/>
 
-                    <input type="date" name="dateOfBirth" placeholder="Date of birth" value="${userLogged.dateOfBirth}" required>
+                    <cus:validatorInput name="dateOfBirth" placeholder="Date of birth" type="date"
+                                        value="${userLogged.dateOfBirth}" required="true"/>
 
-                    <select class="input-select" name="gender" required>
-                        <option value="" disabled <c:if test='${userLogged.gender == ""}'>selected</c:if>>Gender
-                        </option>
-                        <option value="Male"
-                                <c:if test='${userLogged.gender == "Male"}'>selected</c:if> >Male
-                        </option>
-                        <option value="Female" <c:if test='${userLogged.gender == "Female"}'>selected</c:if>>Female
-                        </option>
-                    </select>
+                    <div class="formInput">
+                        <select class="input-select" name="gender" required>
+                            <option value="" disabled <c:if test='${userLogged.gender == ""}'>selected</c:if>>Gender
+                            </option>
+                            <option value="Male"
+                                    <c:if test='${userLogged.gender == "Male"}'>selected</c:if> >Male
+                            </option>
+                            <option value="Female" <c:if test='${userLogged.gender == "Female"}'>selected</c:if>>Female
+                            </option>
+                        </select>
+                    </div>
 
-                    <input type="tel" name="phone" placeholder="Phone" value="${userLogged.contact.phoneNumber}" required/>
+                    <cus:validatorInput name="phone" placeholder="Phone" type="tel"
+                                        value="${userLogged.contact.phoneNumber}"
+                                        required="true"/>
 
-                    <input type="email" name="email" placeholder="Email" value="${userLogged.contact.email}" required/>
+                    <cus:validatorInput name="email" placeholder="Email" type="email"
+                                        value="${userLogged.contact.email}"
+                                        required="true"/>
 
                     <fieldset>
                         <legend>Address</legend>
-                        <input type="text" name="line1" placeholder="Line 1" value="${userLogged.address.line1}" required/>
-                        <input type="text" name="line2" placeholder="Line 2 (optional)" value="${userLogged.address.line2}"/>
-                        <input type="text" name="city" placeholder="City" required value="${userLogged.address.city}"/>
-                        <input type="text" name="state" placeholder="State" required value="${userLogged.address.state}"/>
-                        <input type="text" name="zipCode" placeholder="Zip code" required value="${userLogged.address.zipCode}"/>
+                        <cus:validatorInput name="line1" placeholder="Line 1" type="text"
+                                            value="${userLogged.address.line1}" required="true"/>
+                        <cus:validatorInput name="line2" placeholder="Line 2 (optional)" type="text"
+                                            value="${userLogged.address.line2}" required="false"/>
+                        <cus:validatorInput name="city" placeholder="City" type="text"
+                                            value="${userLogged.address.city}" required="true"/>
+                        <cus:validatorInput name="state" placeholder="State" type="text"
+                                            value="${userLogged.address.state}" required="true"/>
+                        <cus:validatorInput name="zipCode" placeholder="Zip code" type="text"
+                                            value="${userLogged.address.zipCode}" required="true"/>
                     </fieldset>
                     <input type="hidden" name="changeType" value="info">
                     <input type="submit" value="Update"/>
@@ -65,7 +81,8 @@
                     <legend>Change password</legend>
                     <form method="post">
                         <input type="password" id="passwordId" name="password" placeholder="Old Password" required/>
-                        <input type="password" id="passwordConfirmId" name="passwordConfirm" placeholder="New password" required/>
+                        <input type="password" id="passwordConfirmId" name="passwordConfirm" placeholder="New password"
+                               required/>
                         <input type="hidden" name="changeType" value="password">
                         <input type="submit" value="Change password"/>
                     </form>
