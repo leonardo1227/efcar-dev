@@ -94,28 +94,15 @@ function setProductList(data){
 
     $(".productClicable").click(function(e){
         var id = e.target.parentElement.parentElement.id.replace("column", "");
-        doSelectProduct(id);
+        var endDate = $("#txtEndDate").val();
+        var date = $("#txtDate").val();
+        window.location.href =   window.location.href + "/select?carId=" +id+ "&date=" + date + "&endDate=" + endDate;
+        return false;
     });
 
     applyPagination();
 }
 
-function doSelectProduct(id){
-    var date = $("#txtDate").val();
-    $.ajax({
-        url : 'select',
-        type : 'POST',
-        data : {
-            'date': date,
-            'carId' : id
-        },
-        dataType:'json',
-        error : function(request,error)
-        {
-            alert("Request: "+JSON.stringify(request));
-        }
-    });
-}
 
 function applyPagination(){
     var activePageNumber = $(".productsContainer a.active").text();
@@ -129,4 +116,19 @@ function setClickPagNavEvent() {
         $(this).addClass("active");
         applyPagination();
     });
+}
+
+function isValidDate(input){
+    var status = false;
+    if (!input || input.length <= 0) {
+        status = false;
+    } else {
+        var result = new Date(input);
+        if (result == 'Invalid Date') {
+            status = false;
+        } else {
+            status = true;
+        }
+    }
+    return status;
 }

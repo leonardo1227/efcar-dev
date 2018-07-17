@@ -19,18 +19,19 @@ import java.util.List;
 public class SelectServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String carId = req.getParameter("carId");
         String date = req.getParameter("date");
+        String endDate = req.getParameter("endDate");
         LocalDate localDate = LocalDate.parse(date);
+        LocalDate localEndDate = LocalDate.parse(endDate);
         Car car = DataService.getCarById(Long.parseLong(carId));
         BookingCar bk = new BookingCar();
         bk.setCar(car);
         bk.setPickUpDate(localDate);
-        bk.setId(2l);
+        bk.setDropOffDate(localEndDate);
 
         req.getSession().setAttribute(Property.SESSION_BOOKING_ATTRIBUTE_NAME, bk);
-        //req.getRequestDispatcher("/payment").forward(req, resp);
         resp.sendRedirect(req.getContextPath()+"/payment");
     }
 }
