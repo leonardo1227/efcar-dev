@@ -32,6 +32,6 @@ public class SelectServlet extends HttpServlet {
         bk.setDropOffDate(localEndDate);
 
         req.getSession().setAttribute(Property.SESSION_BOOKING_ATTRIBUTE_NAME, bk);
-        resp.sendRedirect(req.getContextPath()+"/payment");
+        resp.sendRedirect(req.getContextPath() + "/payment");
     }
 }

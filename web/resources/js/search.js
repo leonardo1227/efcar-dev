@@ -96,7 +96,22 @@ function setProductList(data){
         var id = e.target.parentElement.parentElement.id.replace("column", "");
         var endDate = $("#txtEndDate").val();
         var date = $("#txtDate").val();
-        window.location.href =   window.location.href + "/select?carId=" +id+ "&date=" + date + "&endDate=" + endDate;
+        if(!isValidDate(endDate)){
+            alert("pick a valid end date!");
+            return false;
+        }
+
+        if(!isValidDate(date)){
+            alert("pick a valid start date!");
+            return false;
+        }
+
+        if(compareDates(endDate,date) == -1){
+            alert("the end date must be after the start date!");
+            return false;
+        }
+
+        window.location.href =   window.location.href.replace("#","") + "/select?carId=" +id+ "&date=" + date + "&endDate=" + endDate;
         return false;
     });
 
@@ -131,4 +146,12 @@ function isValidDate(input){
         }
     }
     return status;
+}
+
+function compareDates(D1,D2){
+    if ((new Date(D1).getTime()) >= (new Date(D2).getTime())) {
+        return 1;
+    } else {
+        return -1;
+    }
 }

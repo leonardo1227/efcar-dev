@@ -123,15 +123,15 @@ public class BookingCar {
         this.finalTotalPrice = finalTotalPrice;
     }
 
-    public Double getRanMilleages(){
-        return this.getFinalMilleage()-this.getStarMilleage();
+    public Double getRanMilleages() {
+        return this.getFinalMilleage() - this.getStarMilleage();
     }
 
-    public Integer getRealDaysOfRent(){
-        return  ((int) Duration.between(this.getPickUpDate(), this.realDropOffDate).toDays());
+    public Integer getRealDaysOfRent() {
+        return ((int) Duration.between(this.getPickUpDate(), this.realDropOffDate).toDays());
     }
 
-    public Integer getDaysOfRent(){
-        return ((int) Duration.between(this.getPickUpDate(),this.dropOffDate).toDays());
+    public Integer getDaysOfRent() {
+        return ((int) Duration.between(this.getPickUpDate(), this.dropOffDate).toDays());
     }
 }
