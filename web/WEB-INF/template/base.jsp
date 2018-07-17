@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/resources/css/search.css'/>"/>
     <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/resources/css/main.css'/>"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <layout:block name="styleLinks">
 
     </layout:block>
