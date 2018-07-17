@@ -1,7 +1,7 @@
 $(function () {
 
     $('#cardNumber').blur(function () {
-        let cardNumberValue = $('#cardNumber');
+        var cardNumberValue = $('#cardNumber');
         $.ajax("cardInformationController", {"type":"GET",
                 "data":{"code":cardNumberValue.val()[0]}})
            .done(showCardIcon)

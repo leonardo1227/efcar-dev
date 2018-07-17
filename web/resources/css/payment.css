@@ -13,3 +13,12 @@
 #card-icon{
     float: right;
 }
+
+.fieldInformation {
+    display: inline-block;
+}
+
+#paymentFieldSetInformation {
+    background-position: 470px 163px !important;
+    box-shadow: 0px 0px 10px #888888;
+}

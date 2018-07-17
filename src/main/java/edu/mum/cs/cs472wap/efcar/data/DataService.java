@@ -698,10 +698,10 @@ public class DataService {
     /*Card Info Map*/
     private static void loadCardInfoMap() {
         cardInfoMap = new HashMap<>();
-        CardInfo visaCard = new CardInfo(Long.valueOf(4), "Visa", "http://localhost:8080/efcar/resources/images/visa.png");
-        CardInfo masterCard = new CardInfo(Long.valueOf(5), "MasterCard", "http://localhost:8080/efcar/resources/images/mastercard.png");
-        CardInfo discoverCard = new CardInfo(Long.valueOf(6), "Discover", "http://localhost:8080/efcar/resources/images/discover.png");
-        CardInfo americanExpressCard = new CardInfo(Long.valueOf(3), "American Express", "http://localhost:8080/efcar/resources/images/american-express.png");
+        CardInfo visaCard = new CardInfo(Long.valueOf(4), "Visa", "/resources/images/visa.png");
+        CardInfo masterCard = new CardInfo(Long.valueOf(5), "MasterCard", "/resources/images/mastercard.png");
+        CardInfo discoverCard = new CardInfo(Long.valueOf(6), "Discover", "/resources/images/discover.png");
+        CardInfo americanExpressCard = new CardInfo(Long.valueOf(3), "American Express", "/resources/images/american-express.png");
 
 
         cardInfoMap.put(visaCard.getCode(), visaCard);

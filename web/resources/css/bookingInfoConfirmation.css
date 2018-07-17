@@ -24,3 +24,12 @@ legend{
 .twoColumns > label{
     display: block;
 }
+
+.confirmation fieldset {
+    border: solid 1px #b1b1b1;
+    padding: 10px;
+}
+
+.confirmation fieldset label {
+    margin: 20px 0;
+}

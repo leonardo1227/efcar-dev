@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "bookingFilter", urlPatterns = {
+@WebFilter(filterName = "BookingFilter", urlPatterns = {
         "/payment"
 })
-public class bookingFilter implements Filter{
+public class BookingFilter implements Filter{
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -26,7 +26,7 @@ public class bookingFilter implements Filter{
         if(session!=null && session.getAttribute(Property.SESSION_BOOKING_ATTRIBUTE_NAME)!=null){
             filterChain.doFilter(request,response);
         }else{
-            response.sendRedirect(request.getContextPath()+"/home");
+            response.sendRedirect(request.getContextPath());
         }
 
     }

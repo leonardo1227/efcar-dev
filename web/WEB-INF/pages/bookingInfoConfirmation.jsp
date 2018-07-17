@@ -16,7 +16,8 @@
         <link rel="stylesheet" href="<c:url value="/resources/css/bookingInfoConfirmation.css"/>"/>
     </layout:put>
     <layout:put block="content" type="REPLACE">
-        <div>
+        <div class="confirmation">
+            <h2>Confirmation</h2>
             <h3><c:out value="Your rent car booking was successfully done. Thank your for renting a car with us.
                 Following there is the complete information about your booking:"/></h3>
             <fieldset>

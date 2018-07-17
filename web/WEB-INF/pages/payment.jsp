@@ -20,9 +20,8 @@
     <layout:put block="content" type="REPLACE">
         <div>
             <form method="post">
-                <fieldset id="paymentFieldSetInformation">
-                    <div id="cardIcon"></div>
-                    <legend><c:out value="Payment Information"/></legend>
+                <div id="paymentFieldSetInformation">
+                    <h2>Payment</h2>
                     <ct:textField name="cardNameHolder" label="Card Name Holder" inputSize="40" required="true"/>
                     <ct:textField name="cardNumber" label="Card Number" inputSizeTyping="16" pattern="\d{16}"
                                   required="true" id="cardNumber"/>
@@ -38,10 +37,12 @@
                             <option value="<c:out value='Debit'/>"><c:out value='Debit'/></option>
                         </select>
                     </div>
-                </fieldset>
-                <div id="controlPaymentDiv">
-                    <button type="submit"><c:out value="Pay and Book"/></button>
+
+                    <div id="controlPaymentDiv">
+                        <button type="submit"><c:out value="Pay and Book"/></button>
+                    </div>
                 </div>
+
             </form>
         </div>
     </layout:put>
